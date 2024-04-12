@@ -4,6 +4,19 @@ It's my first ML project on classification problem
 
 -  First I've cleaned the data to get the necessary columns for model (such as species,island,region,sex etc)
 
+-  Well I've converted species,gender and island to integers so that i can fit them in model
+        Species:
+            'Adelie Penguin (Pygoscelis adeliae)': 1,
+            'Gentoo penguin (Pygoscelis papua)': 2,
+            'Chinstrap penguin (Pygoscelis antarctica)': 3
+        Island:
+            'Torgersen':0,
+            'Biscoe':1,
+            'Dream':2 
+        Sex:
+            'MALE':0,
+            'FEMALE':1
+
 -  Then I've plotted 2 bar graphs specifying species and islands to get some graphical information on data
 
 -  heatmap on correlation of data gives us the clear information on data
