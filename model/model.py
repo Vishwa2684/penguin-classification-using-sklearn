@@ -3,13 +3,15 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,confusion_matrix
 import pandas as pd
 import numpy as np
+import pickle
+import warnings
+warnings.filterwarnings('ignore')
 
 # Data cleaning
 # .read_csv converts the document to an array
-df=pd.read_csv('../dataset/penguins_lter.csv')
+df=pd.read_csv('/penguins_lter.csv')
 
-#removing unnecessary columns in dataframe which are not used in penguin classification
-
+print(df)
 df = df.drop(['Comments', 'Region', 'Sample Number', 'studyName', 'Stage', 'Individual ID', 'Delta 15 N (o/oo)', 'Clutch Completion', 'Date Egg', 'Delta 13 C (o/oo)'], axis=1)
 
 df['Species'] = df['Species'].replace({
@@ -25,6 +27,8 @@ df['Island'] = df['Island'].replace({'Torgersen':0,'Biscoe':1,'Dream':2})
 df=df.dropna()
 
 df=df[df['Sex']!='.']
+
+
 
 # Cleaned Data for model
 
@@ -42,3 +46,7 @@ test_y=test[['Species']]
 
 rfc=RandomForestClassifier()
 rfc.fit(train_x,train_y)
+
+
+pickle.dump(rfc,open('model.pkl','wb'))
+model=pickle.load(open('model.pkl','rb'))
