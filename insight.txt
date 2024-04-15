@@ -25,3 +25,5 @@ It's my first ML project on classification problem
 
 NOTE:
 TO USE PYTHON WITH JS FRAMEWORKS LIKE REACT WE USE PYTHON VIRTUAL ENVIRONMENTS
+    - command for virtual environment is: python -m venv <directory>
+    - Then activate script using  .\<environment name>\Scripts\activate
