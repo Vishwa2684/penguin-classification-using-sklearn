@@ -22,3 +22,6 @@ It's my first ML project on classification problem
 -  heatmap on correlation of data gives us the clear information on data
 
 -  To classify more than 2 objects im using Random Forest classification algorithm from sklearn
+
+NOTE:
+TO USE PYTHON WITH JS FRAMEWORKS LIKE REACT WE USE PYTHON VIRTUAL ENVIRONMENTS
