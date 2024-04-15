@@ -1,8 +1,0 @@
-Metadata-Version: 2.1
-Name: penguin_classification_model
-Version: 1.0
-Summary: This is the ML model i prepared for classification of type of penguin based on 4 input fields which are Culmen Length (mm), Culmen Depth (mm), Flipper Length (mm), Body Mass (g), Sex
-Author: Vishwa
-Requires-Dist: numpy
-Requires-Dist: pandas
-Requires-Dist: scikit-learn
