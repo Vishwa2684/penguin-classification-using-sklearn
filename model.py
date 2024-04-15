@@ -9,7 +9,7 @@ warnings.filterwarnings('ignore')
 
 # Data cleaning
 # .read_csv converts the document to an array
-df=pd.read_csv('./penguins_lter.csv')
+df=pd.read_csv('./dataset/penguins_lter.csv')
 
 print(df)
 df = df.drop(['Comments', 'Region', 'Sample Number', 'studyName', 'Stage', 'Individual ID', 'Delta 15 N (o/oo)', 'Clutch Completion', 'Date Egg', 'Delta 13 C (o/oo)'], axis=1)
