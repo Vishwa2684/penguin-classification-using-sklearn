@@ -47,6 +47,7 @@ test_y=test[['Species']]
 rfc=RandomForestClassifier()
 rfc.fit(train_x,train_y)
 
-
+# dump the model in pickle
 pickle.dump(rfc,open('model.pkl','wb'))
+# load the model which is dumped
 model=pickle.load(open('model.pkl','rb'))
