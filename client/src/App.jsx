@@ -1,44 +1,21 @@
-// import React from 'react'
-// import { useState,useEffect } from 'react'
-// function App() {
-//   const [data,setData]=useState({})
- 
-//   const getData=async()=>{
-//     try{
-//       const response = await fetch('http://localhost:8080/data')
-//     if(response.ok){
-//       let jsonData=await response.json()
-//       console.log(jsonData)
-//       setData(jsonData)
-//     }else{
-//       console.log()
-//     }
-//     }catch(err){
-//       console.log(err.message)
-//     }
-    
-//   }
-
-//   console.log(data.data)
-//   return (
-//     <div>
-//     <button onClick={getData}>Get data</button>
-
-//       {/* {(data!==null)?(data.data.map(elem=><p>{elem}</p>)):<p>No data available</p>} */}
-//     </div>
-//   )
-// }
-
-// export default App
-
 import React, { useState } from 'react';
-
+import axios from'axios'
 function App() {
   const [data, setData] = useState(null);
-
-  const getData = async () => {
+  const [postData,setPostData]=useState({
+    flipperLength: '',
+    culmenLength: '',
+    culmenDepth: '',
+    bodyMass: '',
+    gender:'',
+    island:''
+  })
+  const [output,setOutput]=useState(null)
+  const sendData = async () => {
     try {
-      const response = await fetch('http://localhost:8080/data');
+      const response = await axios.post('http://localhost:8080/model',{
+        postData
+      })
       if (response.ok) {
         const jsonData = await response.json();
         setData(jsonData);
@@ -50,18 +27,42 @@ function App() {
     }
   };
 
+  const handleChange = (e)=>{
+    const {name,value} =e.target
+    setPostData(prevData=>({
+      ...prevData,
+      [name]:value
+
+    }))
+  }
+
+  console.log(postData)
+  
   return (
     <div>
-      <button onClick={getData}>Get data</button>
-      {data !== null ? (
-        <ul>
-          {data.data.map((elem) => (
-            <li >{elem}</li>
-          ))}
-        </ul>
-      ) : (
-        <p>No data available</p>
-      )}
+
+      <form action="POST">
+        <h1>Penguin prediction model based on</h1>
+        <h4>Flipper length (mm)</h4>
+        <input type="text" name='flipperLength'  onChange={handleChange} />
+        <h4>Culmen length (mm)</h4>
+        <input type="text" name='culmenLength' onChange={handleChange} />
+        <h4>Culmen depth (mm)</h4>
+        <input type="text" name='culmenDepth' onChange={handleChange} />
+        <h4>Body mass (g)</h4>
+        <input type="text" name='bodyMass' onChange={handleChange} />
+        <select name="gender" id="genders" onChange={handleChange}>
+          <option value="0">Male</option>
+          <option value="1">Female</option>
+        </select>
+        <select name="island" id="islands" onChange={handleChange}>
+            <option value='0'>Torgersen</option>
+            <option value="1">Biscoe</option>
+            <option value="2">Dream</option>
+        </select>
+        <button type='submit' onClick={sendData}>Predict</button>
+      </form>
+      
     </div>
   );
 }
