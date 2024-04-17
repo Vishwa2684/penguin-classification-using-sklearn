@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+.select-container select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Optional: Style the options */
+.select-container select option {
+  padding: 10px;
+}

@@ -50,16 +50,16 @@ function App() {
         <h4>Culmen depth (mm)</h4>
         <input type="text" name='culmenDepth' onChange={handleChange} />
         <h4>Body mass (g)</h4>
-        <input type="text" name='bodyMass' onChange={handleChange} />
+        <input type="text" name='bodyMass' onChange={handleChange} /><br />
         <select name="gender" id="genders" onChange={handleChange}>
           <option value="0">Male</option>
           <option value="1">Female</option>
-        </select>
+        </select><br />
         <select name="island" id="islands" onChange={handleChange}>
             <option value='0'>Torgersen</option>
             <option value="1">Biscoe</option>
             <option value="2">Dream</option>
-        </select>
+        </select><br />
         <button type='submit' onClick={sendData}>Predict</button>
       </form>
       
