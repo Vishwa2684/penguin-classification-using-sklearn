@@ -4,8 +4,10 @@ import numpy as np
 from flask import Flask,request,jsonify
 from flask_cors import CORS
 import requests
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
-model = pickle.load(open('./model.pkl'))
+
 
 app=Flask(__name__)
 CORS(app)
@@ -13,25 +15,30 @@ CORS(app)
 def start():
     return '<h1>Backend for my model</h1>'
 
-@app.route('/data')
-def data():
-    return {"data":['Apple','Banana','Pineapple']}
-
-@app.route('/model')
+@app.route('/model',methods=['POST'])
 def model():
     try:
+        model = pickle.load(open('./model.pkl','rb'))
+        
         data = request.json
-    
+        species={
+            1:'Adelie Penguin (Pygoscelis adeliae)',
+            2:'Gentoo penguin (Pygoscelis papua)',
+            3:'Chinstrap penguin (Pygoscelis antarctica)'
+            }
         # Extract the relevant features from the data
-        input_data = [data[key] for key in ['Island', 'Culmen Length (mm)', 'Culmen Depth (mm)', 'Flipper Length (mm)', 'Body Mass (g)', 'Sex']]
-    
+        l=[]
+        for i in data:
+            l.append(int(data[i]))
+        print(l)
         # Make predictions
-        predictions = model.predict([input_data])
+        predictions = model.predict([l])
+        print('Predictions',species[predictions[0]])
     
         # Return the predictions as JSON
-        return jsonify({'predictions': predictions.tolist()})
-    except:
-        return {"error":"bad request"}
+        return jsonify({'predictions': species[predictions[0]]})
+    except Exception as e:
+        return {"error":e.args[0]}
 
     
 

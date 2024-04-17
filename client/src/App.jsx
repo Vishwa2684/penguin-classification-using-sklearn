@@ -13,12 +13,11 @@ function App() {
   const [output,setOutput]=useState(null)
   const sendData = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/model',{
-        postData
-      })
+      const response = await axios.post('http://localhost:8080/model',postData)
       if (response.ok) {
         const jsonData = await response.json();
         setOutput(jsonData);
+        console.log(response)
       } else {
         console.log('Response not OK');
       }
