@@ -1,5 +1,6 @@
 # API for my python model
 import pickle
+import numpy as np
 from flask import Flask,request,jsonify
 from flask_cors import CORS
 import requests
@@ -19,9 +20,19 @@ def data():
 
 @app.route('/model')
 def model():
-    form_data=request.json
-    culmen_length=form_data['culmenLength']
-    culmen_depth=form_data['culmenDepth']
+    try:
+        data = request.json
+    
+        # Extract the relevant features from the data
+        input_data = [data[key] for key in ['Island', 'Culmen Length (mm)', 'Culmen Depth (mm)', 'Flipper Length (mm)', 'Body Mass (g)', 'Sex']]
+    
+        # Make predictions
+        predictions = model.predict([input_data])
+    
+        # Return the predictions as JSON
+        return jsonify({'predictions': predictions.tolist()})
+    except:
+        return {"error":"bad request"}
 
     
 

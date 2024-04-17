@@ -18,7 +18,7 @@ function App() {
       })
       if (response.ok) {
         const jsonData = await response.json();
-        setData(jsonData);
+        setOutput(jsonData);
       } else {
         console.log('Response not OK');
       }
@@ -41,7 +41,7 @@ function App() {
   return (
     <div>
 
-      <form action="POST">
+
         <h1>Penguin prediction model based on</h1>
         <h4>Flipper length (mm)</h4>
         <input type="text" name='flipperLength'  onChange={handleChange} />
@@ -60,8 +60,8 @@ function App() {
             <option value="1">Biscoe</option>
             <option value="2">Dream</option>
         </select><br />
-        <button type='submit' onClick={sendData}>Predict</button>
-      </form>
+        <button onClick={sendData}>Predict</button>
+
       
     </div>
   );
