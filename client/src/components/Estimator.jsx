@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Estimator() {
     const [data, setData] = useState(null);
@@ -19,6 +19,7 @@ export default function Estimator() {
       try {
         if (Object.values(postData).some(value => value === null)) {
             toast.error('Fill all the fields'); // Display toast notification
+            console.log(`fill all fields`)
             return; // Stop the function if any field is null
         }
         const response = await axios.post('http://localhost:8080/model',postData)
@@ -49,7 +50,7 @@ export default function Estimator() {
     return (
       <div>
   
-  
+            <ToastContainer/>
           <h1>Penguin prediction model based on</h1>
           <h4>Flipper length (mm)</h4>
           <input type="text" name='flipperLength'  onChange={handleChange} />
@@ -74,3 +75,4 @@ export default function Estimator() {
       </div>
     );
 }
+
