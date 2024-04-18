@@ -52,3 +52,10 @@
 .select-container select option {
   padding: 10px;
 }
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Set height to full viewport height */
+}

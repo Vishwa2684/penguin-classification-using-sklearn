@@ -29,6 +29,8 @@ def model():
         # Extract the relevant features from the data
         l=[]
         for i in data:
+            if data[i]==None:
+                return {'msg':'fill all fields'}
             l.append(float(data[i]))
         print(l)
         # Make predictions
