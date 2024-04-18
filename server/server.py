@@ -29,14 +29,14 @@ def model():
         # Extract the relevant features from the data
         l=[]
         for i in data:
-            l.append(int(data[i]))
+            l.append(float(data[i]))
         print(l)
         # Make predictions
         predictions = model.predict([l])
         print('Predictions',species[predictions[0]])
     
         # Return the predictions as JSON
-        return jsonify({'predictions': species[predictions[0]]})
+        return {'predictions': species[predictions[0]]}
     except Exception as e:
         return {"error":e.args[0]}
 
